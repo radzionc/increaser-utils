@@ -1,6 +1,6 @@
 {
   "name": "increaser-utils",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "General-purpose utils for Increaser",
   "main": "src/index.js",
   "scripts": {
@@ -9,7 +9,9 @@
   },
   "author": "geekrodion",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "luxon": "^1.24.1"
+  },
   "lint-staged": {
     "*.{js,json}": [
       "prettier --single-quote --write",
