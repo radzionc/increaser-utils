@@ -135,7 +135,7 @@ class OffsetedUtils {
   }
 
   getWeekStart() {
-    this.getWeekStartDate().valueOf()
+    return this.getWeekStartDate().valueOf()
   }
   
   getWeekStartInSec() {
