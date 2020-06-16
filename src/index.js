@@ -16,6 +16,9 @@ const MS_IN_WEEK = 7 * MS_IN_DAY
 const getShortHour = hour => hour % 12 || 12
 
 const getAMorPM = hour => (hour >= 12 ? 'PM' : 'AM')
+
+const getSetsSum = sets =>
+  sets.reduce((acc, { start, end }) => acc + Math.abs(end - start), 0)
 class OffsetedUtils {
   constructor(offset = null) {
     this.offset = offset
@@ -171,5 +174,6 @@ module.exports = {
   OffsetedUtils,
 
   getShortHour,
-  getAMorPM
+  getAMorPM,
+  getSetsSum
 }
