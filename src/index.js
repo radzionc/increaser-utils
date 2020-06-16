@@ -81,7 +81,18 @@ class OffsetedUtils {
     return date.toLocaleString(DateTime.DATE_FULL)
   }
 
+  getDaysDatesInRange(start, end) {
+    const dates = []
+    const endDate = this.toTime(end)
+    let lastDay = this.toTime(start)
+    while (lastDay.startOf('day') <= endDate.startOf('day')) {
+      dates.push(lastDay)
+      lastDay = lastDay.plus({ days: 1 })
+    }
   
+    return dates
+  }
+
   getWeekday(date) {
     return (date || this.getLocal()).weekday
   }
