@@ -65,8 +65,7 @@ class OffsetedUtils {
     return this.getPeriodSets('week', sets)
   }
 
-  getHumanTime() {
-    const date = this.getLocal()
+  getHumanTime(date = this.getLocal()) {
     let hours = date.hour
     let minutes = date.minute
     if (minutes === S_IN_MIN) {
