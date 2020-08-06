@@ -154,6 +154,11 @@ class OffsetedUtils {
   }
 }
 
+const getFirstName = name => {
+  const [firstName] = name.split(' ')
+  return firstName.charAt(0).toUpperCase() + firstName.slice(1)
+}
+
 module.exports = {
   S_IN_MIN,
   H_IN_DAY,
@@ -172,5 +177,7 @@ module.exports = {
 
   getShortHour,
   getAMorPM,
-  getSetsSum
+  getSetsSum,
+
+  getFirstName
 }
