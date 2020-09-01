@@ -1,6 +1,6 @@
 {
   "name": "increaser-utils",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "General-purpose utils for Increaser",
   "main": "src/index.js",
   "scripts": {

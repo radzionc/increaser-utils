@@ -159,8 +159,8 @@ const getFirstName = name => {
   return firstName.charAt(0).toUpperCase() + firstName.slice(1)
 }
 
-const getReportError = (Sentry, ingoreErrors = []) => {
-  const reportError = (message, info, error) => {
+const getReportError = (Sentry, ingoreErrors = [], flushDuration) => {
+  const reportError = async (message, info, error) => {
     if (ingoreErrors.find(ErrorClass => error instanceof ErrorClass)) {
       return
     }
@@ -206,6 +206,9 @@ const getReportError = (Sentry, ingoreErrors = []) => {
         Sentry.captureMessage(message)
       }
     })
+    if (flushDuration > 0) {
+      await Sentry.flush(flushDuration)
+    }
   }
 
   return reportError
