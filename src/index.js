@@ -159,6 +159,58 @@ const getFirstName = name => {
   return firstName.charAt(0).toUpperCase() + firstName.slice(1)
 }
 
+const getReportError = (Sentry, ingoreErrors = []) => {
+  const reportError = (message, info, error) => {
+    if (ingoreErrors.find(ErrorClass => error instanceof ErrorClass)) {
+      return
+    }
+  
+    console.error([
+      `Environment: ${process.env.NODE_ENV}`,
+      `Message: ${message}`,
+      `Info: ${JSON.stringify(info)}`,
+      error && `Error: ${JSON.stringify(error)}`
+    ].filter(l => l).join('\n'))
+  
+    Sentry.withScope(scope => {
+      if (info) {
+        const setExtra = data => {
+          if (typeof data === 'object') {
+            Object.entries(data).forEach(([key, value]) => {
+              scope.setExtra(
+                key,
+                typeof value === 'object' ? JSON.stringify(value) : value
+              )
+            })
+          } else {
+            scope.setExtra('info', data)
+          }
+        }
+        if (Array.isArray(info)) {
+          const object = info.reduce(
+            (acc, value, index) => ({
+              ...acc,
+              [index]: value
+            }),
+            {}
+          )
+          setExtra(object)
+        } else {
+          setExtra(info)
+        }
+      }
+      if (error) {
+        Sentry.setExtra('message',)
+        Sentry.captureException(error)
+      } else {
+        Sentry.captureMessage(message)
+      }
+    })
+  }
+
+  return reportError
+}
+
 module.exports = {
   S_IN_MIN,
   H_IN_DAY,
@@ -179,5 +231,7 @@ module.exports = {
   getAMorPM,
   getSetsSum,
 
-  getFirstName
+  getFirstName,
+
+  getReportError
 }
