@@ -17,6 +17,11 @@ const getShortHour = hour => hour % 12 || 12
 
 const getAMorPM = hour => (hour >= 12 ? 'PM' : 'AM')
 
+const is12HoursFormat = () => {
+  const dateString = new Date().toLocaleTimeString()
+  return dateString.match(/am|pm/i)
+}
+
 const getSetsSum = sets =>
   sets.reduce((acc, { start, end }) => acc + Math.abs(end - start), 0)
 class OffsetedUtils {
@@ -72,9 +77,13 @@ class OffsetedUtils {
       minutes = 0
       hours += 1
     }
-    const minuteView = minutes < 10 ? `0${minutes}` : minutes
 
-    return `${getShortHour(hours)}:${minuteView} ${getAMorPM(hours)}`
+    const minuteView = minutes < 10 ? `0${minutes}` : minutes
+    if (is12HoursFormat()) {
+      return `${getShortHour(hours)}:${minuteView} ${getAMorPM(hours)}`
+    }
+
+    return `${hours}:${minutes}`
   }
 
   getHumanPaddleDate(string) {
@@ -231,6 +240,7 @@ module.exports = {
   OffsetedUtils,
 
   getShortHour,
+  is12HoursFormat,
   getAMorPM,
   getSetsSum,
 
