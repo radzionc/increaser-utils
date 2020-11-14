@@ -78,7 +78,7 @@ class OffsetedUtils {
       hours += 1
     }
 
-    const minuteView = minutes.padStart(2, '0')
+    const minuteView = minutes.toString().padStart(2, '0')
     if (is12HoursFormat()) {
       return `${getShortHour(hours)}:${minuteView} ${getAMorPM(hours)}`
     }
