@@ -78,12 +78,12 @@ class OffsetedUtils {
       hours += 1
     }
 
-    const minuteView = minutes < 10 ? `0${minutes}` : minutes
+    const minuteView = minutes.padStart(2, '0')
     if (is12HoursFormat()) {
       return `${getShortHour(hours)}:${minuteView} ${getAMorPM(hours)}`
     }
 
-    return `${hours}:${minutes}`
+    return `${hours}:${minuteView}`
   }
 
   getHumanPaddleDate(string) {
