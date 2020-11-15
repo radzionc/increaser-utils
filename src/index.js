@@ -83,12 +83,10 @@ const getSetsSum = sets =>
 
     const minuteView = padTimePart(minutes)
     if (is12HoursFormat()) {
-      const hourView = padTimePart(getShortHour(hours))
-      return `${hourView}:${minuteView} ${getAMorPM(hours)}`
+      return `${getShortHour(hours)}:${minuteView} ${getAMorPM(hours)}`
     }
 
-    const hourView = padTimePart(hours)
-    return `${hourView}:${minuteView}`
+    return `${hours}:${minuteView}`
   }
 
   getHumanPaddleDate(string) {
