@@ -22,9 +22,12 @@ const is12HoursFormat = () => {
   return dateString.match(/am|pm/i)
 }
 
+const padTimePart = (number) => number.toString().padStart(2, '0')
+
 const getSetsSum = sets =>
   sets.reduce((acc, { start, end }) => acc + Math.abs(end - start), 0)
-class OffsetedUtils {
+
+  class OffsetedUtils {
   constructor(offset = null) {
     this.offset = offset
   }
@@ -78,12 +81,14 @@ class OffsetedUtils {
       hours += 1
     }
 
-    const minuteView = minutes.toString().padStart(2, '0')
+    const minuteView = padTimePart(minutes)
     if (is12HoursFormat()) {
-      return `${getShortHour(hours)}:${minuteView} ${getAMorPM(hours)}`
+      const hourView = padTimePart(getShortHour(hours))
+      return `${hourView}:${minuteView} ${getAMorPM(hours)}`
     }
 
-    return `${hours}:${minuteView}`
+    const hourView = padTimePart(hours)
+    return `${hourView}:${minuteView}`
   }
 
   getHumanPaddleDate(string) {
