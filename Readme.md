@@ -1,1 +1,11 @@
-git add . && git commit -m 'update: theme' && git push && npm publish
+# increaser-utils
+
+Different utils for [Increaser](https://increaser.org) services.
+
+## Technologies
+* NodeJS
+* Luxon
+
+## License
+
+MIT © [RodionChachura](https://geekrodion.com)
