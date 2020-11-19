@@ -212,7 +212,7 @@ const getReportError = (Sentry, ingoreErrors = [], flushDuration) => {
         }
       }
       if (error) {
-        Sentry.setExtra('message',)
+        scope.setExtra('message',)
         Sentry.captureException(error)
       } else {
         Sentry.captureMessage(message)
