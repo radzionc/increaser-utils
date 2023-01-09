@@ -10,7 +10,7 @@
   "author": "geekrodion",
   "license": "ISC",
   "dependencies": {
-    "luxon": "^1.24.1"
+    "luxon": "^2.5.2"
   },
   "lint-staged": {
     "*.{js,json}": [
